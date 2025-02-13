@@ -19,7 +19,7 @@
             font-weight: bold;
             color: #ff4d6d;
         }
-        #loveText {
+        #loveText, #loveLetter {
             display: none;
             font-size: 30px;
             color: #ff4d6d;
@@ -58,13 +58,25 @@
             background-color: #ddd;
             color: black;
         }
+        #loveLetter {
+            width: 80%;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            color: #333;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
     </style>
 </head>
 <body>
-
     <div class="container">
         <p id="question">Will you be my Valentine? 🥺</p>
-        <p id="loveText">Yeyyy, Iloveeyouuu babii 🥺💕</p>
+        <p id="loveText">Yeyyy, I love youuuu babii 🥺💕</p>
         
         <img id="noGif" src="" alt="Sad GIF">
         <img id="yesGif" src="https://media.giphy.com/media/GjF4SSQJNLuFx14Zpv/giphy.gif" alt="Love GIF">
@@ -73,6 +85,14 @@
             <button id="yesButton" onclick="yesClicked()">Yes</button>
             <button id="noButton" onclick="noClicked()">No</button>
         </div>
+    </div>
+
+    <div id="loveLetter">
+        <p>My babii,</p>
+        <p>From the moment I met you, my heart knew that you were the one. Every smile, every laugh, every shared moment has made my world brighter and more beautiful. You are my greatest joy, my sweetest love, and the most wonderful blessing in my life.</p>
+        <p>Thank you for being you, for being my love, my best friend, and my Valentine. I promise to cherish you, love you, and stand by you always. 💖</p>
+        <p>Forever Yours,</p>
+        <p>Your babii</p>
     </div>
 
     <script>
@@ -110,13 +130,26 @@
         let noGif = document.getElementById("noGif");
         let loveText = document.getElementById("loveText");
         let yesGif = document.getElementById("yesGif");
+        let loveLetter = document.getElementById("loveLetter");
 
         function yesClicked() {
-            document.body.innerHTML = "";
+            yesButton.style.display = "none";
+            noButton.style.display = "none";
+            yesGif.style.display = "none";
+            noGif.style.display = "none";
+            loveText.style.display = "block";
+            loveLetter.style.display = "block";
+            loveLetter.style.opacity = "1";
+            yesButton.style.display = "none";
+            noButton.style.display = "none";
+            yesGif.style.display = "none";
+            yesButton.style.display = "none";
+            noButton.style.display = "none";
+            noButton.style.display = "none";
             loveText.style.display = "block";
             yesGif.style.display = "block";
-            document.body.appendChild(loveText);
-            document.body.appendChild(yesGif);
+            loveLetter.style.display = "block";
+            loveLetter.style.opacity = "1";
         }
 
         function noClicked() {
@@ -127,23 +160,20 @@
                 messageIndex++;
             }
 
-            // Increase Yes button size
             let currentSize = parseInt(window.getComputedStyle(yesButton).fontSize);
             yesButton.style.fontSize = (currentSize + 5) + "px";
             yesButton.style.padding = (currentSize + 5) / 2 + "px";
 
-            // Final state when No is clicked too many times
             if (messageIndex === messages.length) {
                 yesButton.style.position = "absolute";
-                yesButton.style.top = "50%";
+               yesButton.style.top = "50%";
                 yesButton.style.left = "50%";
-                yesButton.style.transform = "translate(-50%, -50%)";
+             yesButton.style.transform = "translate(-50%, -50%)";
                 yesButton.style.fontSize = "50px";
                 yesButton.style.padding = "20px 40px";
                 noButton.style.display = "none"; 
             }
         }
     </script>
-
 </body>
 </html>
